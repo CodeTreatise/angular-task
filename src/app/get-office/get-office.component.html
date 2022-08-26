@@ -1,0 +1,49 @@
+<div fxLayoutGap="10px" class="wrapper">
+    <div class="selectContainer">
+        <mat-form-field appearance="fill">
+            <mat-label>choose state</mat-label>
+            <mat-select [(ngModel)]="stateSelected" (ngModelChange)="onStateSelected($event)">
+                <mat-option *ngFor="let state of listStates" [value]="state.id">
+                    {{state.state}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>choose division</mat-label>
+            <mat-select [(ngModel)]="divisionSelected" (ngModelChange)="onDivisionSelected($event)">
+                <mat-option *ngFor="let division of listDivisions" [value]="division.id">
+                    {{division.division}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>choose district</mat-label>
+            <mat-select [(ngModel)]="districtSelected" (ngModelChange)="onDistrictSelected($event)">
+                <mat-option *ngFor="let district of listDistricts" [value]="district.id">
+                    {{district.district}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>choose department</mat-label>
+            <mat-select [(ngModel)]="departmentSelected" (ngModelChange)="onDepartmentSelected($event)">
+                <mat-option *ngFor="let department of listDepartment" [value]="department.id">
+                    {{department.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <button mat-button type="submit"
+            (click)="onApply($event, {state: stateSelected, division: divisionSelected, district: districtSelected, department: departmentSelected})">apply</button>
+    </div>
+</div>
+
+<!-- <div class="selected">
+    <p>State: {{stateSelected}}</p>
+    <p>Division: {{divisionSelected}}</p>
+    <p>District: {{districtSelected}}</p>
+    <p>Department: {{departmentSelected}}</p>
+
+</div> -->

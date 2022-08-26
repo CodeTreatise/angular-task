@@ -1,0 +1,158 @@
+<form [formGroup]="officeForm" class="form-container">
+
+    <!-- Office Details -->
+
+    <mat-card class="office">
+        <mat-card-header>
+            <mat-card-title>Office Details</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+
+            <!-- Department -->
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field class="full-width">
+                        <mat-label>Department</mat-label>
+                        <mat-select formControlName="organizationId">
+                            <mat-option value="option">Option</mat-option>
+                        </mat-select>
+                        <mat-hint style="color: red"
+                            *ngIf="officeForm.get('organizationId')?.touched && officeForm.get('organizationId')?.hasError('required')">
+                            Department is reqired
+                        </mat-hint>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <!-- Office Name -->
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field class="full-width">
+                        <mat-label>Office Name </mat-label>
+                        <input formControlName="name" matInput placeholder="Office Name">
+                        <mat-hint style="color: red"
+                            *ngIf="officeForm.get('name')?.touched && officeForm.get('name')?.hasError('required')">
+                            Office Name is reqired
+                        </mat-hint>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <!-- Landline No -->
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field class="full-width">
+                        <mat-label>Landline No. </mat-label>
+                        <input formControlName="landlineNo" matInput placeholder="Landline No.">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <!-- Email id -->
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field class="full-width">
+                        <mat-label>Email id </mat-label>
+                        <input formControlName="emailId" matInput placeholder="Email id">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <!-- State -->
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field class="full-width">
+                        <mat-label>State </mat-label>
+                        <mat-select formControlName="stateId">
+                            <mat-option value="option">Option</mat-option>
+                        </mat-select>
+                        <mat-hint style="color: red"
+                            *ngIf="officeForm.get('stateId')?.touched && officeForm.get('stateId')?.hasError('required')">
+                            State is reqired
+                        </mat-hint>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <!-- Division -->
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field class="full-width">
+                        <mat-label>Division </mat-label>
+                        <mat-select formControlName="divisionId">
+                            <mat-option value="option">Option</mat-option>
+                        </mat-select>
+                        <mat-hint style="color: red"
+                            *ngIf="officeForm.get('divisionId')?.touched && officeForm.get('divisionId')?.hasError('required')">
+                            Division is reqired
+                        </mat-hint>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <!-- District -->
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field class="full-width">
+                        <mat-label>District </mat-label>
+                        <mat-select formControlName="districtId">
+                            <mat-option value="option">Option</mat-option>
+                        </mat-select>
+                        <mat-hint style="color: red"
+                            *ngIf="officeForm.get('districtId')?.touched && officeForm.get('districtId')?.hasError('required')">
+                            District is reqired
+                        </mat-hint>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <!-- Address -->
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field class="full-width">
+                        <mat-label>Address </mat-label>
+                        <input formControlName="address" matInput placeholder="Select Department">
+                        <mat-hint style="color: red"
+                            *ngIf="officeForm.get('address')?.touched && officeForm.get('address')?.hasError('required')">
+                            Address is reqired
+                        </mat-hint>
+                    </mat-form-field>
+                </div>
+            </div>
+
+        </mat-card-content>
+    </mat-card>
+
+    <!-- Person Details -->
+    <mat-card class="person">
+        <mat-card-header>
+            <mat-card-title>Contact Person Details</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+
+            <!-- Person Name -->
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field class="full-width">
+                        <mat-label>Person Name </mat-label>
+                        <input formControlName="contactPersonName" matInput placeholder="Person Name">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <!-- Mobile No -->
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field class="full-width">
+                        <mat-label>Mobile No. </mat-label>
+                        <input formControlName="mobileNo" matInput placeholder="9999999999">
+                    </mat-form-field>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+    <mat-card-actions class="action">
+        <button mat-raised-button color="primary" (click)="saveForm()">Save</button>
+        <button mat-raised-button color="secondary" (click)="updateForm()">Update</button>
+    </mat-card-actions>
+</form>
