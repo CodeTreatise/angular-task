@@ -24,15 +24,15 @@ export class GetOfficeService {
 
   }
 
-
+  // multi dependancy dropdown http calls | get-office
   getState(): Observable<any> {
     const getStateURL = `http://awsmaster.mahamining.com/master/states/1`;
 
     return this.http
       .get<State[]>(getStateURL)
       .pipe(
-        // tap(data => console.log(`states: ${JSON.stringify(data)}`))
-      )
+      // tap(data => console.log(`states: ${JSON.stringify(data)}`))
+    )
   }
 
   getDivision(selectedStateId: number): Observable<any> {
@@ -42,8 +42,8 @@ export class GetOfficeService {
     return this.http
       .get<Division[]>(getDivisionURL, { params: paramstate })
       .pipe(
-        // tap(data => console.log(`states: ${JSON.stringify(data)}`))
-      )
+      // tap(data => console.log(`Division: ${JSON.stringify(data)}`))
+    )
   }
 
   getDistrict(selectedDivisionId: number): Observable<any> {
@@ -53,8 +53,8 @@ export class GetOfficeService {
     return this.http
       .get<District[]>(getDistrictURL)
       .pipe(
-        // tap(data => console.log(`states: ${JSON.stringify(data)}`))
-      )
+      // tap(data => console.log(`District: ${JSON.stringify(data)}`))
+    )
 
   }
 
@@ -64,8 +64,8 @@ export class GetOfficeService {
     return this.http
       .get<Department[]>(getDepartmentURL)
       .pipe(
-        // tap(data => console.log(`states: ${JSON.stringify(data)}`))
-      )
+      // tap(data => console.log(`Department: ${JSON.stringify(data)}`))
+    )
   }
 
   // getting & setting selections of State, Division, District, Department
@@ -77,15 +77,21 @@ export class GetOfficeService {
     this._selections = data;
   }
 
-  // load the data inside table
-  displayOffice() {
-    if (this._selections) {
-      let param = this._selections;
-      const params = new HttpParams()
+  // load the data inside table | display office
+  displayOffice(): Observable<any> {
+    // if (this._selections) {
+    // let param = this._selections;
+    // const params = new HttpParams()
 
-      const displayOfficeURL = `http://awsapi.mahamining.com/mineral-mapping/department/get-department-details?OrganizationId=1&StateId=1&DivisionId=1&DistrictId=24&NoPage=1&RowsPerPage=10`
-      console.log("from service", this._selections);
-    }
+    const displayOfficeURL = `https://awsapi.mahamining.com/mineral-mapping/department/get-department-details?OrganizationId=0&StateId=1&DivisionId=0&DistrictId=0&NoPage=1&RowsPerPage=10`;
+    return this.http
+      .get(displayOfficeURL)
+      .pipe(
+      // tap(data => console.log(`table: ${JSON.stringify(data)}`))
+    )
+    // console.log("from service", this._selections);
+    // }
+
   }
 
   // getOffice(id: number) Observable<Office>{

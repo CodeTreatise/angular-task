@@ -13,7 +13,7 @@ import { Department } from '../model/department';
 })
 export class GetOfficeComponent implements OnInit {
 
-  constructor(private getOffice: GetOfficeService) { }
+  constructor(private officeService: GetOfficeService) { }
 
 
   listStates!: State[];
@@ -33,28 +33,28 @@ export class GetOfficeComponent implements OnInit {
   }
 
   loadState() {
-    this, this.getOffice.getState().subscribe(data => {
+    this, this.officeService.getState().subscribe(data => {
       this.listStates = data['responseData'];
       // console.log(this.listState);
     })
   }
 
   onStateSelected(selectedStateId: any) {
-    this.getOffice.getDivision(selectedStateId).subscribe(data => {
+    this.officeService.getDivision(selectedStateId).subscribe(data => {
       this.listDivisions = data['responseData'];
       // console.log(this.listDivisions);
     })
   }
 
   onDivisionSelected(selectedDivisionId: any) {
-    this.getOffice.getDistrict(selectedDivisionId).subscribe(data => {
+    this.officeService.getDistrict(selectedDivisionId).subscribe(data => {
       this.listDistricts = data['responseData'];
       // console.log(this.listDistricts);
     })
   }
 
   onDistrictSelected(selectedDistrictId: any) {
-    this.getOffice.getDepartment().subscribe(data => {
+    this.officeService.getDepartment().subscribe(data => {
       this.listDepartment = data['responseData'];
       // console.log(this.listDepartment)
     })
@@ -62,9 +62,14 @@ export class GetOfficeComponent implements OnInit {
 
   onDepartmentSelected(selectedDepartmentId: any) { }
 
+  // pass the selections to service
   onApply(event: any, selections: any) {
-    this.getOffice.selections = selections;
-    // console.log(selections);
-    this.getOffice.displayOffice();
+    // this.officeService.selections = selections;
+    // // console.log(selections);
+    // this.officeService.displayOffice();
+
+    alert(`Data successfully fetched`);
   }
+
+
 }
