@@ -29,13 +29,13 @@ export class GetOfficeComponent implements OnInit {
   departmentSelected!: string;
 
   ngOnInit(): void {
-    this.loadState()
+    this.loadState();
   }
 
   loadState() {
-    this, this.officeService.getState().subscribe(data => {
+    this.officeService.getState().subscribe(data => {
       this.listStates = data['responseData'];
-      // console.log(this.listState);
+      // console.log(data['responseData']);
     })
   }
 
@@ -63,12 +63,8 @@ export class GetOfficeComponent implements OnInit {
   onDepartmentSelected(selectedDepartmentId: any) { }
 
   // pass the selections to service
-  onApply(event: any, selections: any) {
-    // this.officeService.selections = selections;
-    // // console.log(selections);
-    // this.officeService.displayOffice();
-
-    alert(`Data successfully fetched`);
+  onApply(selections: any) {
+    this.officeService.setTableURL(selections);
   }
 
 

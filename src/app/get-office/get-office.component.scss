@@ -1,8 +1,6 @@
 .wrapper {
-    justify-content: space-around;
-
-    .selectContainer {
-        display: flex;
-        justify-content: space-around;
-    }
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-top: 10px;
 }

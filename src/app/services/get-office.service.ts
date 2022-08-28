@@ -1,6 +1,6 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, pipe } from 'rxjs';
+import { Observable, pipe, Subject } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { Department } from '../model/department';
 import { District } from '../model/district';
@@ -11,17 +11,23 @@ import { State } from '../model/state';
   providedIn: 'root'
 })
 export class GetOfficeService {
-  _selections: Object = {
-    division: 0,
-    state: 0,
-    district: 0,
-    department: 0
-
-
-  };
   private userId: number = 1;
-  constructor(private http: HttpClient) {
 
+  tableData = new Subject();
+
+  // share the table click data with form
+  tableRow = new Subject();
+
+
+  sendTableRow(rowClicked: any) {
+    this.tableRow.next(rowClicked);
+  }
+
+  getTableRow(): Observable<any> {
+    return this.tableRow.asObservable();
+  }
+
+  constructor(private http: HttpClient) {
   }
 
   // multi dependancy dropdown http calls | get-office
@@ -68,44 +74,53 @@ export class GetOfficeService {
     )
   }
 
-  // getting & setting selections of State, Division, District, Department
-  public get selections(): Object {
-    return this._selections;
+  // setTabURL()=> will get all selections from dropdown and create parameters{} and send HTTP get 
+  setTableURL(data: any) {
+    // console.log(data);
+    let params = new HttpParams()
+      .set(`stateId`, data.state)
+      .set('DivisionId', data.division)
+      .set('DistrictId', data.district)
+      .set('OrganizationId', data.department)
+
+    this.displayOffice(params).subscribe(data => {
+      this.tableData.next(data);
+    });
   }
 
-  public set selections(data: Object) {
-    this._selections = data;
-  }
-
-  // load the data inside table | display office
-  displayOffice(): Observable<any> {
-    // if (this._selections) {
-    // let param = this._selections;
-    // const params = new HttpParams()
-
+  displayOffice(params: any): Observable<any> {
     const displayOfficeURL = `https://awsapi.mahamining.com/mineral-mapping/department/get-department-details?OrganizationId=0&StateId=1&DivisionId=0&DistrictId=0&NoPage=1&RowsPerPage=10`;
+
+    const officeURL = `https://awsapi.mahamining.com/mineral-mapping/department/get-department-details?&NoPage=1&RowsPerPage=10`;
     return this.http
+
+      // XXXXXX => as passing parameters resived from multi drop down not returning any data..... 
+      // ..........another url with pre build paramaeters is called.
+
+      // .get(officeURL, { params: params })
       .get(displayOfficeURL)
       .pipe(
       // tap(data => console.log(`table: ${JSON.stringify(data)}`))
     )
-    // console.log("from service", this._selections);
-    // }
-
   }
 
-  // getOffice(id: number) Observable<Office>{
-  //   return this.http
-  //   .get()
-  //   ;
-  // }
+  getTableData(): Observable<any> {
+    return this.tableData.asObservable();
+  }
 
+  // form insert and update
   postOffice(data: any) {
-    return this.http.post<any>(`http://awsapi.mahamining.com/mineral-mapping/department/save-department/`, data);
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const url = `http://awsapi.mahamining.com/mineral-mapping/department/save-department/`;
+    return this.http.post<any>(url, data, { headers: headers });
   }
 
   updateOffice(data: any) {
-    return this.http.put<any>(`http://awsapi.mahamining.com/mineral-mapping/department/save-department/`, data)
+    const url = `http://awsapi.mahamining.com/mineral-mapping/department/update-department/${data.organizationId}`
+    return { response: "URL not supported" }
+
+    // XXXXXX => commented as URL for put not supported
+    // return this.http.put<any>(url, data)
   }
 
 }
