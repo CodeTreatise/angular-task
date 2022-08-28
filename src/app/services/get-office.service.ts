@@ -116,11 +116,12 @@ export class GetOfficeService {
   }
 
   updateOffice(data: any) {
-    const url = `http://awsapi.mahamining.com/mineral-mapping/department/update-department/${data.organizationId}`
-    return { response: "URL not supported" }
+    // const url = `http://awsapi.mahamining.com/mineral-mapping/department/update-department/${data.organizationId}`
+    const url_ = `http://awsapi.mahamining.com/mineral-mapping/department/save-department/`;
+    // return { response: "URL not supported" }
 
     // XXXXXX => commented as URL for put not supported
-    // return this.http.put<any>(url, data)
+    return this.http.post<any>(url_, data)
   }
 
 }

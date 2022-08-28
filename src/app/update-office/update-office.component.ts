@@ -110,13 +110,13 @@ export class UpdateOfficeComponent implements OnInit, OnDestroy {
       let office = { ...this.officeForm.value, id: this.updateData.id, flag: 'u' };
 
       let response = this.officeService.updateOffice(office);
-      alert(response.response);
+      // alert(response.response);
 
       // XXXXXXX => commented as put on provided url is not supported
-      // this.officeService.updateOffice(office).subscribe(
-      //   response => console.log("success: ", response),
-      //   error => console.error("Error: ", error)
-      // )
+      this.officeService.updateOffice(office).subscribe(
+        response => console.log("success: ", response),
+        error => console.error("Error: ", error)
+      )
     }
   }
 
