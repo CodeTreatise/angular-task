@@ -32,7 +32,7 @@ export class GetOfficeService {
 
   // multi dependancy dropdown http calls | get-office
   getState(): Observable<any> {
-    const getStateURL = `http://awsmaster.mahamining.com/master/states/1`;
+    const getStateURL = `https://awsmaster.mahamining.com/master/states/1`;
 
     return this.http
       .get<State[]>(getStateURL)
@@ -42,7 +42,7 @@ export class GetOfficeService {
   }
 
   getDivision(selectedStateId: number): Observable<any> {
-    const getDivisionURL = `http://awsmaster.mahamining.com/master/divisions/${this.userId}`;
+    const getDivisionURL = `https://awsmaster.mahamining.com/master/divisions/${this.userId}`;
     let paramstate = new HttpParams().set('stateId', selectedStateId)
 
     return this.http
@@ -53,7 +53,7 @@ export class GetOfficeService {
   }
 
   getDistrict(selectedDivisionId: number): Observable<any> {
-    const getDistrictURL = `http://awsmaster.mahamining.com/master/districts/GetDistrictByUserIdDivisionId/${this.userId}/${selectedDivisionId}`;
+    const getDistrictURL = `https://awsmaster.mahamining.com/master/districts/GetDistrictByUserIdDivisionId/${this.userId}/${selectedDivisionId}`;
     // let paramdivision = new HttpParams().set('divisionid', selectedDivisionId)
 
     return this.http
@@ -65,7 +65,7 @@ export class GetOfficeService {
   }
 
   getDepartment(): Observable<any> {
-    const getDepartmentURL = `http://awsapi.mahamining.com/mineral-mapping/consumer-project/get-organization?UserId=${this.userId}`;
+    const getDepartmentURL = `https://awsapi.mahamining.com/mineral-mapping/consumer-project/get-organization?UserId=${this.userId}`;
 
     return this.http
       .get<Department[]>(getDepartmentURL)
@@ -111,13 +111,13 @@ export class GetOfficeService {
   // form insert and update
   postOffice(data: any) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const url = `http://awsapi.mahamining.com/mineral-mapping/department/save-department/`;
+    const url = `https://awsapi.mahamining.com/mineral-mapping/department/save-department/`;
     return this.http.post<any>(url, data, { headers: headers });
   }
 
   updateOffice(data: any) {
     // const url = `http://awsapi.mahamining.com/mineral-mapping/department/update-department/${data.organizationId}`
-    const url_ = `http://awsapi.mahamining.com/mineral-mapping/department/save-department/`;
+    const url_ = `https://awsapi.mahamining.com/mineral-mapping/department/save-department/`;
     // return { response: "URL not supported" }
 
     // XXXXXX => commented as URL for put not supported

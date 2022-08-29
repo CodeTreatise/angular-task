@@ -98,7 +98,7 @@ export class UpdateOfficeComponent implements OnInit, OnDestroy {
     if (this.officeForm.valid) {
       const o = { ...this.officeForm.value, id: 0, createdBy: 0, flag: 'i' };
       this.officeService.postOffice(o).subscribe(
-        response => console.log("Success: ", response),
+        response => alert("data saved..!"),
         error => console.error("Error: ", error)
       )
     }
@@ -114,7 +114,7 @@ export class UpdateOfficeComponent implements OnInit, OnDestroy {
 
       // XXXXXXX => commented as put on provided url is not supported
       this.officeService.updateOffice(office).subscribe(
-        response => console.log("success: ", response),
+        response => alert("data updated...!"),
         error => console.error("Error: ", error)
       )
     }
