@@ -17,26 +17,36 @@ export class GetOfficeComponent implements OnInit {
 
 
   listStates!: State[];
-  stateSelected!: string;
+  stateSelected: string = '';
 
   listDivisions!: Division[];
-  divisionSelected!: string;
+  divisionSelected: string = '';
 
   listDistricts!: District[];
-  districtSelected!: string;
+  districtSelected: string = '';
 
   listDepartment!: Department[];
-  departmentSelected!: string;
+  departmentSelected: string = '';
 
   ngOnInit(): void {
     this.loadState();
+    this.loadDepartment();
   }
 
+  // get and load list of avalable states
   loadState() {
     this.officeService.getState().subscribe(data => {
       this.listStates = data['responseData'];
       // console.log(data['responseData']);
-    })
+    });
+  }
+
+  // get and load list of avalable department
+  loadDepartment() {
+    this.officeService.getDepartment().subscribe(data => {
+      this.listDepartment = data['responseData'];
+      // console.log(this.listDepartment)
+    });
   }
 
   onStateSelected(selectedStateId: any) {
@@ -53,16 +63,9 @@ export class GetOfficeComponent implements OnInit {
     })
   }
 
-  onDistrictSelected(selectedDistrictId: any) {
-    this.officeService.getDepartment().subscribe(data => {
-      this.listDepartment = data['responseData'];
-      // console.log(this.listDepartment)
-    })
-  }
+  // onDistrictSelected(selectedDistrictId: any) { }
 
-  onDepartmentSelected(selectedDepartmentId: any) { }
-
-  // pass the selections to service
+  // pass the dropdown selections to service
   onApply(selections: any) {
     this.officeService.setTableURL(selections);
   }

@@ -10,10 +10,11 @@ export interface Office {
     stateId: number,
     divisionId: number,
     talukaId: number,
+    districtId: number,
 
     contactPersonName: string,
-    mobileNo: number,
-    landLineNo: number,
+    mobileNo: string,
+    landLineNo: string,
     emailId: string,
 
     isApproved: boolean,

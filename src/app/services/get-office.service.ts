@@ -20,6 +20,7 @@ export class GetOfficeService {
 
 
   sendTableRow(rowClicked: any) {
+    // console.log("row clicked from sendTableRow() officeService", rowClicked);
     this.tableRow.next(rowClicked);
   }
 
@@ -42,6 +43,7 @@ export class GetOfficeService {
   }
 
   getDivision(selectedStateId: number): Observable<any> {
+    // console.log("Selected state from getDivision() in get-office.service :", selectedStateId);
     const getDivisionURL = `https://awsmaster.mahamining.com/master/divisions/${this.userId}`;
     let paramstate = new HttpParams().set('stateId', selectedStateId)
 
@@ -65,7 +67,7 @@ export class GetOfficeService {
   }
 
   getDepartment(): Observable<any> {
-    const getDepartmentURL = `https://awsapi.mahamining.com/mineral-mapping/consumer-project/get-organization?UserId=${this.userId}`;
+    const getDepartmentURL = `http://awsapi.mahamining.com/mineral-mapping/consumer-project/get-organization?UserId=${this.userId}`;
 
     return this.http
       .get<Department[]>(getDepartmentURL)

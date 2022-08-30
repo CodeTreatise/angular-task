@@ -13,7 +13,7 @@
             <mat-label>State </mat-label>
             <mat-select
               formControlName="stateId"
-              (ngModelChange)="onStateSelected()"
+              (selectionChange)="onStateSelected()"
             >
               <mat-option *ngFor="let state of listStates" [value]="state.id">{{
                 state.state
@@ -39,7 +39,7 @@
             <mat-label>Division </mat-label>
             <mat-select
               formControlName="divisionId"
-              (ngModelChange)="onDivisionSelected()"
+              (selectionChange)="onDivisionSelected()"
             >
               <mat-option
                 *ngFor="let division of listDivisions"
@@ -65,10 +65,7 @@
         <div class="col-md-6">
           <mat-form-field class="full-width">
             <mat-label>District </mat-label>
-            <mat-select
-              formControlName="districtId"
-              (ngModelChange)="onDistrictSelected()"
-            >
+            <mat-select formControlName="districtId">
               <mat-option
                 *ngFor="let district of listDistricts"
                 [value]="district.id"
@@ -93,10 +90,7 @@
         <div class="col-md-6">
           <mat-form-field class="full-width">
             <mat-label>Department</mat-label>
-            <mat-select
-              formControlName="organizationId"
-              (ngModelChange)="onDepartmentSelected()"
-            >
+            <mat-select formControlName="organizationId">
               <mat-option
                 *ngFor="let department of listDepartment"
                 [value]="department.id"
@@ -220,6 +214,7 @@
       </div>
     </mat-card-content>
   </mat-card>
+
   <mat-card-actions class="action">
     <button
       mat-raised-button

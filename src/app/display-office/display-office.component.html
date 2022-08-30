@@ -14,7 +14,7 @@
   <!-- Office Column -->
   <ng-container matColumnDef="office">
     <th mat-header-cell *matHeaderCellDef>Office</th>
-    <td mat-cell *matCellDef="let element">{{ element.division }}</td>
+    <td mat-cell *matCellDef="let element">{{ element.name }}</td>
   </ng-container>
 
   <!-- Person Column -->
@@ -35,7 +35,7 @@
     <td mat-cell *matCellDef="let element">{{ element.district }}</td>
   </ng-container>
 
-  <!-- district Column -->
+  <!-- Update buttton Column -->
   <ng-container matColumnDef="update">
     <th mat-header-cell *matHeaderCellDef>Update Info</th>
     <td mat-cell *matCellDef="let element">
